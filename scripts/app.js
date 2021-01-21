@@ -12,8 +12,7 @@ const updateUI = data => {
     // const cityDets = data.cityDets
     // const weather = data.weather
 
-
-    //destructure properties
+    //same as above comment but with destructure properties
     const {cityDets, weather} = data
 
     // update details template
@@ -31,7 +30,7 @@ const updateUI = data => {
     const iconSrc = `img/icons/${weather.WeatherIcon}.svg`
     icon.setAttribute('src', iconSrc)
 
-    //Ternary Operator
+    //Ternary Operator doing exact same as below comment
     let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg'
     // if(weather.IsDayTime) {
     //     timeSrc = 'img/day.svg'
