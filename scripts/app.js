@@ -41,10 +41,13 @@ cityForm.addEventListener('submit', e => {
 
     //get city text value
     const city = cityForm.city.value.trim()
+
+    //special case for wakanda
     if (city.toLowerCase() == 'wakanda'){
         card.classList.remove('d-none')
         details.innerHTML = `<h1> Wakanda Foeva </h1>`
         time.setAttribute('src', 'img/wakanda.jpg')
+        cityForm.reset()
         return
     } 
     cityForm.reset()
