@@ -3,16 +3,10 @@ const card = document.querySelector('.card')
 const details = document.querySelector('.details')
 const time = document.querySelector('img.time')
 const icon = document.querySelector('.icon img')
-
+const forecast = new Forecast()
 
 
 const updateUI = data => {
-
-    console.log(data);
-    // const cityDets = data.cityDets
-    // const weather = data.weather
-
-    //same as above comment but with destructure properties
     const {cityDets, weather} = data
 
     // update details template
@@ -32,11 +26,6 @@ const updateUI = data => {
 
     //Ternary Operator doing exact same as below comment
     let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg'
-    // if(weather.IsDayTime) {
-    //     timeSrc = 'img/day.svg'
-    // } else {
-    //     timeSrc = 'img/night.svg'
-    // }
     time.setAttribute('src', timeSrc)
 
 
@@ -44,15 +33,6 @@ const updateUI = data => {
     if(card.classList.contains('d-none')) {
         card.classList.remove('d-none')
     }
-}
-
-const updateCity = async city => {
-    //get city details
-    const cityDets = await getCity(city)
-    //get weather
-    const weather = await getWeather(cityDets.Key)
-
-    return {cityDets, weather}
 }
 
 cityForm.addEventListener('submit', e => {
@@ -70,7 +50,7 @@ cityForm.addEventListener('submit', e => {
     cityForm.reset()
 
     //update the UI with new city
-    updateCity(city)
+    forecast.updateCity(city)
         .then(data => {
             updateUI(data)
         })
@@ -81,7 +61,7 @@ cityForm.addEventListener('submit', e => {
 })
 
 if(localStorage.getItem('city')) {
-    updateCity(localStorage.getItem('city'))
+    forecast.updateCity(localStorage.getItem('city'))
         .then( data => updateUI(data))
         .catch(err => console.log(err))
 }
