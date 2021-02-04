@@ -1,6 +1,6 @@
 class Forecast {
     constructor() {
-        this.key = '4ZFYU2QGCYPEIdzUawgfSfgAz4NrtcT9'
+        this.key = 'KNVKqdg8dJyG3WRXFqw8NndcASZLtAm0'
         this.weatherURI = 'https://dataservice.accuweather.com/currentconditions/v1/'
         this.cityURI = 'https://dataservice.accuweather.com/locations/v1/cities/search'
     }
@@ -10,7 +10,7 @@ class Forecast {
         //get weather
         const weather = await this.getWeather(cityDets.Key)
 
-        return {cityDets, weather}
+        return { cityDets, weather }
     }
 
     async getCity(city) {
@@ -22,10 +22,10 @@ class Forecast {
         return data[0]
     }
     async getWeather(id) {
-        
+
         const query = `${id}?apikey=${this.key}`
-    
-    
+
+
         //sending request parsing data and returning
         const response = await fetch(this.weatherURI + query)
         const data = await response.json()
